@@ -82,6 +82,13 @@
       opacity: 0.6;
     }
 
+    /* New: blink effect (turns temporarily black) */
+    .blink {
+      background: black !important;
+      box-shadow: 0 0 25px #00f2ff !important;
+      transition: background 0.1s ease;
+    }
+
     .game-over {
       background-color: #b71c1c !important;
     }
@@ -150,14 +157,13 @@
     var started = false;
     var level = 0;
 
-    // When Start button is clicked
     $("#start-btn").click(function() {
       if (!started) {
         level = 0;
         $("#level-title").text("Level " + level);
         nextSequence();
         started = true;
-        $("#start-btn").hide(); // hide button after starting
+        $("#start-btn").hide();
       }
     });
 
@@ -196,12 +202,21 @@
       userClickedPattern = [];
       level++;
       $("#level-title").text("Level " + level);
+
       var randomNumber = Math.floor(Math.random() * 4);
       var randomChosenColour = buttonColours[randomNumber];
       gamePattern.push(randomChosenColour);
 
-      $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+      blinkButton(randomChosenColour);
       playSound(randomChosenColour);
+    }
+
+    function blinkButton(color) {
+      var button = $("#" + color);
+      button.addClass("blink");
+      setTimeout(function() {
+        button.removeClass("blink");
+      }, 300);
     }
 
     function animatePress(currentColor) {

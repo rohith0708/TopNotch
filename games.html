@@ -3,15 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TopNotch Games - Dashboard</title>
+  <title>TopBeat Games - Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       min-height: 100vh;
       background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
@@ -21,7 +16,6 @@
       justify-content: space-between;
       color: #fff;
     }
-
     header {
       width: 100%;
       padding: 20px 0;
@@ -30,19 +24,16 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 0 15px #00f2ff;
     }
-
     .logo-img {
       width: 80px;
       border-radius: 50%;
       box-shadow: 0 0 15px #00f2ff;
       animation: glow 2s infinite alternate;
     }
-
     @keyframes glow {
       from { box-shadow: 0 0 10px #00f2ff, 0 0 20px #6a00ff; }
       to { box-shadow: 0 0 20px #00f2ff, 0 0 40px #6a00ff; }
     }
-
     .logo-text {
       font-family: 'Orbitron', sans-serif;
       font-size: 28px;
@@ -51,13 +42,7 @@
       text-shadow: 0 0 10px #00f2ff, 0 0 20px #6a00ff;
       margin-top: 10px;
     }
-
-    .welcome {
-      font-size: 18px;
-      color: #aaa;
-      margin-top: 10px;
-    }
-
+    .welcome { font-size: 18px; color: #aaa; margin-top: 10px; }
     main {
       margin: 40px auto;
       display: grid;
@@ -66,7 +51,6 @@
       width: 90%;
       max-width: 900px;
     }
-
     .game-card {
       background: rgba(0, 0, 0, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -80,13 +64,7 @@
       flex-direction: column;
       justify-content: space-between;
     }
-
-    .game-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00f2ff;
-    }
-
-    /* Fix Simon Game logo sizing */
+    .game-card:hover { transform: scale(1.05); box-shadow: 0 0 25px #00f2ff; }
     .simon-logo {
       width: 100%;
       max-width: 220px;
@@ -97,18 +75,13 @@
       box-shadow: 0 0 20px #00f2ff;
       transition: transform 0.3s;
     }
-
-    .game-card:hover .simon-logo {
-      transform: scale(1.05);
-    }
-
+    .game-card:hover .simon-logo { transform: scale(1.05); }
     .game-title {
       font-size: 18px;
       color: #00f2ff;
       text-shadow: 0 0 10px #00f2ff, 0 0 20px #6a00ff;
       margin-bottom: 10px;
     }
-
     .play-btn {
       display: inline-block;
       background: linear-gradient(90deg, #00f2ff, #6a00ff);
@@ -120,12 +93,10 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
     .play-btn:hover {
       background: linear-gradient(90deg, #6a00ff, #00f2ff);
       box-shadow: 0 0 15px #00f2ff;
     }
-
     footer {
       text-align: center;
       padding: 15px 0;
@@ -135,42 +106,32 @@
       background: rgba(0, 0, 0, 0.4);
       width: 100%;
     }
-
-    footer a {
-      color: #00f2ff;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    footer a { color: #00f2ff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="TopNotch Games Logo" class="logo-img">
-    <div class="logo-text">TOPNOTCH GAMES</div>
+    <img src="logo.png" alt="TopBeat Games Logo" class="logo-img">
+    <div class="logo-text">TOPBEAT GAMES</div>
     <div class="welcome">Welcome, Player!</div>
   </header>
 
   <main>
-    <!-- Simon Game Card -->
     <div class="game-card" onclick="window.location.href='simon.html'">
       <img src="simon_logo.png" alt="Simon Game Logo" class="simon-logo">
       <div class="game-title">Simon Game</div>
       <button class="play-btn">Play Now</button>
     </div>
 
-    <!-- Future Game Placeholder -->
     <div class="game-card">
-
       <div class="game-title">Coming Soon...</div>
       <button class="play-btn" disabled>Locked</button>
     </div>
   </main>
 
   <footer>
-    © 2025 TopNotch Games | <a href="#">Privacy Policy</a>
+    © 2025 TopBeat Games | <a href="#">Privacy Policy</a>
   </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simon Game - TopNotch Games</title>
+  <title>Simon Game - TopBeat Games</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,7 +13,7 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh;
       background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
       font-family: 'Poppins', sans-serif;
       color: #fff;
@@ -21,6 +21,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      position: relative;
+      overflow-x: hidden;
     }
 
     header {
@@ -45,20 +47,58 @@
     #level-title {
       font-size: 22px;
       color: #ffffffcc;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       text-shadow: 0 0 10px #00f2ff;
     }
 
+    .howto {
+      color: #00f2ff;
+      text-decoration: none;
+      font-size: 15px;
+      display: inline-block;
+      text-shadow: 0 0 10px #00f2ff;
+      margin-bottom: 15px;
+    }
+
+    .howto:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .start-btn {
+      background: linear-gradient(90deg, #00f2ff, #6a00ff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px #00f2ff;
+      transition: 0.3s;
+    }
+
+    .start-btn:hover {
+      background: linear-gradient(90deg, #6a00ff, #00f2ff);
+      box-shadow: 0 0 25px #00f2ff;
+    }
+
+    /* FIXED GRID ALIGNMENT */
     .btn-container {
       display: grid;
-      grid-template-columns: repeat(2, 120px);
-      grid-gap: 20px;
-      margin-top: 30px;
+      grid-template-columns: repeat(2, 140px);
+      grid-template-rows: repeat(2, 140px);
+      gap: 25px;
+      justify-content: center;
+      align-content: center;
+      margin: 50px auto;
+      display: none;
+      width: 320px;
     }
 
     .btn {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border: none;
       border-radius: 20px;
       cursor: pointer;
@@ -82,7 +122,6 @@
       opacity: 0.6;
     }
 
-    /* New: blink effect (turns temporarily black) */
     .blink {
       background: black !important;
       box-shadow: 0 0 25px #00f2ff !important;
@@ -93,31 +132,115 @@
       background-color: #b71c1c !important;
     }
 
-    .start-btn {
-      margin-top: 20px;
+    /* --- Leaderboard --- */
+    .leaderboard {
+      margin-top: 40px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 242, 255, 0.5);
+      box-shadow: 0 0 20px #00f2ff;
+      border-radius: 15px;
+      padding: 20px 30px;
+      width: 320px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .leaderboard h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      color: #00f2ff;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #00f2ff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    th {
+      color: #00f2ff;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: rgba(0, 242, 255, 0.1);
+    }
+
+    /* --- Modal --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: rgba(10, 10, 30, 0.95);
+      border: 2px solid #00f2ff;
+      border-radius: 15px;
+      box-shadow: 0 0 25px #00f2ff;
+      padding: 25px 35px;
+      width: 350px;
+      text-align: center;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-content h2 {
+      color: #00f2ff;
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      font-size: 14px;
+      color: #ddd;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
       background: linear-gradient(90deg, #00f2ff, #6a00ff);
-      color: white;
       border: none;
+      padding: 8px 20px;
       border-radius: 8px;
-      padding: 12px 25px;
-      font-size: 16px;
+      color: white;
       cursor: pointer;
-      letter-spacing: 1px;
       box-shadow: 0 0 15px #00f2ff;
+      font-size: 14px;
       transition: 0.3s;
     }
 
-    .start-btn:hover {
+    .close-btn:hover {
       background: linear-gradient(90deg, #6a00ff, #00f2ff);
-      box-shadow: 0 0 25px #00f2ff;
     }
 
     footer {
-      position: absolute;
+      position: fixed;
       bottom: 10px;
       text-align: center;
       font-size: 12px;
       color: #aaa;
+      width: 100%;
     }
 
     footer a {
@@ -135,18 +258,46 @@
     <img src="simon_logo.png" alt="Simon Game Logo" class="logo-img">
     <div class="logo-text">SIMON GAME</div>
     <h1 id="level-title">Press Start to Begin</h1>
+
+    <a id="howto-link" class="howto">How to Play</a><br>
     <button id="start-btn" class="start-btn">Start Game</button>
   </header>
 
-  <div class="btn-container">
+  <div class="leaderboard" id="leaderboard">
+    <h2>🏆 Leaderboard</h2>
+    <table>
+      <tr><th>Rank</th><th>Player</th><th>Level</th></tr>
+      <tr><td>1</td><td>Rohith</td><td>12</td></tr>
+      <tr><td>2</td><td>Aryan</td><td>9</td></tr>
+      <tr><td>3</td><td>Priya</td><td>8</td></tr>
+      <tr><td>4</td><td>Kiran</td><td>6</td></tr>
+      <tr><td>5</td><td>Guest</td><td>4</td></tr>
+    </table>
+  </div>
+
+  <div class="btn-container" id="game-board">
     <button class="btn green" id="green"></button>
     <button class="btn red" id="red"></button>
     <button class="btn yellow" id="yellow"></button>
     <button class="btn blue" id="blue"></button>
   </div>
 
+  <div id="howto-modal" class="modal">
+    <div class="modal-content">
+      <h2>How to Play</h2>
+      <p>
+        🔹 Press <b>Start Game</b> to begin.<br>
+        🔹 Watch the color blink.<br>
+        🔹 Click the same color to repeat it.<br>
+        🔹 Each round adds one more color.<br>
+        🔹 A wrong move ends the game — then view the leaderboard!
+      </p>
+      <button id="close-btn" class="close-btn">Got It!</button>
+    </div>
+  </div>
+
   <footer>
-    © 2025 TopNotch Games | <a href="#">Privacy Policy</a>
+    © 2025 TopBeat Games | <a href="#">Privacy Policy</a>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -160,6 +311,8 @@
     $("#start-btn").click(function() {
       if (!started) {
         level = 0;
+        $("#leaderboard").fadeOut(300);
+        $("#game-board").fadeIn(300);
         $("#level-title").text("Level " + level);
         nextSequence();
         started = true;
@@ -169,10 +322,8 @@
 
     $(".btn").click(function() {
       if (!started) return;
-
       var userChosenColour = $(this).attr("id");
       userClickedPattern.push(userChosenColour);
-
       playSound(userChosenColour);
       animatePress(userChosenColour);
       checkAnswer(userClickedPattern.length - 1);
@@ -181,19 +332,16 @@
     function checkAnswer(currentLevel) {
       if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
         if (userClickedPattern.length === gamePattern.length) {
-          setTimeout(function() {
-            nextSequence();
-          }, 1000);
+          setTimeout(nextSequence, 1000);
         }
       } else {
         playSound("wrong");
         $("body").addClass("game-over");
-        $("#level-title").text("Game Over, Press Start to Restart");
-
-        setTimeout(function() {
-          $("body").removeClass("game-over");
-        }, 200);
-
+        $("#level-title").text("Game Over! You reached Level " + level);
+        setTimeout(() => $("body").removeClass("game-over"), 200);
+        $("#game-board").fadeOut(400, function() {
+          $("#leaderboard").fadeIn(500);
+        });
         startOver();
       }
     }
@@ -202,11 +350,9 @@
       userClickedPattern = [];
       level++;
       $("#level-title").text("Level " + level);
-
       var randomNumber = Math.floor(Math.random() * 4);
       var randomChosenColour = buttonColours[randomNumber];
       gamePattern.push(randomChosenColour);
-
       blinkButton(randomChosenColour);
       playSound(randomChosenColour);
     }
@@ -214,16 +360,12 @@
     function blinkButton(color) {
       var button = $("#" + color);
       button.addClass("blink");
-      setTimeout(function() {
-        button.removeClass("blink");
-      }, 300);
+      setTimeout(() => button.removeClass("blink"), 300);
     }
 
     function animatePress(currentColor) {
       $("#" + currentColor).addClass("pressed");
-      setTimeout(function() {
-        $("#" + currentColor).removeClass("pressed");
-      }, 100);
+      setTimeout(() => $("#" + currentColor).removeClass("pressed"), 100);
     }
 
     function playSound(name) {
@@ -237,6 +379,13 @@
       started = false;
       $("#start-btn").show();
     }
+
+    $("#howto-link").click(() => $("#howto-modal").fadeIn(200).css("display", "flex"));
+    $("#close-btn, #howto-modal").click(function(e) {
+      if (e.target.id === "close-btn" || e.target.id === "howto-modal") {
+        $("#howto-modal").fadeOut(200);
+      }
+    });
   </script>
 </body>
 </html>
