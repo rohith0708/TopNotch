@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TopNotch Games - Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px #00f2ff;
+    }
+
+    .logo-img {
+      width: 80px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #00f2ff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #00f2ff, 0 0 20px #6a00ff; }
+      to { box-shadow: 0 0 20px #00f2ff, 0 0 40px #6a00ff; }
+    }
+
+    .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      color: #00f2ff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #00f2ff, 0 0 20px #6a00ff;
+      margin-top: 10px;
+    }
+
+    .welcome {
+      font-size: 18px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    main {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    .game-card {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 0 15px #00f2ff, 0 0 25px #6a00ff inset;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .game-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00f2ff;
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 150px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      object-fit: cover;
+      box-shadow: 0 0 15px #6a00ff;
+    }
+
+    /* Simon Game logo inside card */
+    .simon-logo {
+      width: 120px;
+      margin: 10px auto;
+      display: block;
+      filter: drop-shadow(0 0 15px #00f2ff);
+    }
+
+    .game-title {
+      font-size: 18px;
+      color: #00f2ff;
+      text-shadow: 0 0 10px #00f2ff, 0 0 20px #6a00ff;
+      margin-bottom: 5px;
+    }
+
+    .play-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #00f2ff, #6a00ff);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .play-btn:hover {
+      background: linear-gradient(90deg, #6a00ff, #00f2ff);
+      box-shadow: 0 0 15px #00f2ff;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+    }
+
+    footer a {
+      color: #00f2ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="TopNotch Games Logo" class="logo-img">
+    <div class="logo-text">TOPNOTCH GAMES</div>
+    <div class="welcome">Welcome, Player!</div>
+  </header>
+
+  <main>
+    <!-- Game 1 - Simon Game -->
+    <div class="game-card" onclick="window.location.href='simon.html'">
+      <img src="simon_logo.png" alt="Simon Game Logo" class="simon-logo">
+      <div class="game-title">Simon Game</div>
+      <button class="play-btn">Play Now</button>
+    </div>
+
+    <!-- Placeholder for upcoming games -->
+    <div class="game-card">
+      <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/controller-1837442_1280.jpg" alt="Coming Soon">
+      <div class="game-title">Coming Soon...</div>
+      <button class="play-btn" disabled>Locked</button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 TopNotch Games | <a href="#">Privacy Policy</a>
+  </footer>
+</body>
+</html>
+
